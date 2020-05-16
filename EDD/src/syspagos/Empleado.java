@@ -5,9 +5,6 @@ import excepciones.MesesTrabajoException;
 import excepciones.NombreEmpleadoException;
 import excepciones.NumeroEmpleadoException;
 
-import javax.*;
-import java.util.regex.Pattern;
-
 public class Empleado {
 
     private int numeroEmpleado;
@@ -18,7 +15,8 @@ public class Empleado {
 
 
     public Prima calcularPrima (String numEmpleado, String nomEmpleado, String mesesT, String dir)
-            throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException, CargoException {
+            throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException, CargoException 
+    {
 
         establecerNumeroEmpleado(numEmpleado);
         estableceNombreEmpleado(nomEmpleado);
@@ -29,7 +27,7 @@ public class Empleado {
             setPrima(Prima.P1);
             return Prima.P1;
         }
-        if(!getDirectivo() && getMesesTrabajo() >12){
+        if(!getDirectivo() && getMesesTrabajo() >=12){
             setPrima(Prima.P2);
             return Prima.P2;
         }
@@ -44,52 +42,52 @@ public class Empleado {
         throw new RuntimeException();
     }
 
-
-    public void establecerNumeroEmpleado(String nEmpleado) throws NumeroEmpleadoException {
+//fin
+    public void establecerNumeroEmpleado(String nEmpleado) throws NumeroEmpleadoException 
+    {
         int n;
-        if (nEmpleado.matches("^\\d+$")){
-            n= Integer.parseInt(nEmpleado);
-            if (n>000 && n < 1000 ){
-                setNumeroEmpleado(n);
-                return;
-            }
-        }
+        if (nEmpleado.matches("^\\d{3}$")){
+        	n= Integer.parseInt(nEmpleado);
+        	if(n>000 && n<1000) {
+        		setNumeroEmpleado(n);
+        	} else
+        		throw new NumeroEmpleadoException();
+            
+        }else
         throw new NumeroEmpleadoException();
-//        String numeroCeros = String.valueOf(obj.format("%05d", numero));
+        //String numeroCeros = String.valueOf(obj.format("%05d", numero));
     }
 
-    public void estableceNombreEmpleado(String nombreEmpleado) throws NombreEmpleadoException {
-
-        if (Pattern.matches("^[a-zA-Z0-9]*$", nombreEmpleado)){
-            if (nombreEmpleado.length()>=10){
-                setNombreEmpleado(nombreEmpleado);
-                return;
-            }
-        }
+//fin
+    public void estableceNombreEmpleado(String nombreEmpleado) throws NombreEmpleadoException 
+    {
+        if (nombreEmpleado.matches("^[a-zA-Z]{1,10}$")){
+            setNombreEmpleado(nombreEmpleado);
+        }else
         throw new NombreEmpleadoException();
     }
 
+//fin
     public void estableceMesesTrabajo(String mesesT) throws MesesTrabajoException {
         int n;
-        if (mesesT.matches("^\\d+$")){
-            n= Integer.parseInt(mesesT);
-            if (n>=000 && n < 1000 ){
-                setNumeroEmpleado(n);
-                return;
-            }
-        }
+        if (mesesT.matches("^\\d{3}$"))
+        {
+        	n= Integer.parseInt(mesesT);
+        	if(n>=000 && n<1000) {
+                setMesesTrabajo(n);
+        	} else
+        		throw new MesesTrabajoException();
+        }else
         throw new MesesTrabajoException();
     }
 
     public void establecerSerDirectivo(String directivo) throws CargoException {
         char[] caracter= directivo.toCharArray();
-        if (directivo.length()==1){
-            if (caracter[0] == '+' ){
-                setDirectivo(true);
-            }else if(caracter[0]=='-'){
-                setDirectivo(false);
-            }
-        }
+        if (caracter[0] == '+' ){
+            setDirectivo(true);
+        }else if(caracter[0]=='-'){
+            setDirectivo(false);
+        }else
         throw new CargoException();
     }
 
