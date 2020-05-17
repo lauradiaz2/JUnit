@@ -70,10 +70,59 @@ public class TestEmpleado
 	}
 	
 	@Test
-	public void calcularPrimaCorrecto() throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException
+	public void calcularPrimaCorrectoP1() throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException
 	{
 		Empleado e = new Empleado();
-		Prima resultado=P1;
+		Prima resultado= Prima.P1;
+		Prima esperado = Prima.P1;
+        try 
+        {
+            resultado=e.calcularPrima("400", "Laura", "014", "+");
+        } catch (CargoException ex) 
+        {
+        	fail();
+        }
+        assertEquals(esperado,resultado);
+	}
+	
+	@Test
+	public void calcularPrimaCorrectoP2() throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException
+	{
+		Empleado e = new Empleado();
+		Prima resultado= Prima.P1;
+		Prima esperado = Prima.P2;
+        try 
+        {
+            resultado=e.calcularPrima("400", "Laura", "014", "-");
+        } catch (CargoException ex) 
+        {
+        	fail();
+        }
+        assertEquals(esperado,resultado);
+	}
+	
+	@Test
+	public void calcularPrimaCorrectoP3() throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException
+	{
+		Empleado e = new Empleado();
+		Prima resultado= Prima.P1;
+		Prima esperado = Prima.P3;
+        try 
+        {
+            resultado=e.calcularPrima("400", "Laura", "011", "+");
+        } catch (CargoException ex) 
+        {
+        	fail();
+        }
+        assertEquals(esperado,resultado);
+	}
+	
+	@Test
+	public void calcularPrimaCorrectoP4() throws NumeroEmpleadoException, NombreEmpleadoException, MesesTrabajoException
+	{
+		Empleado e = new Empleado();
+		Prima resultado= Prima.P1;
+		Prima esperado = Prima.P4;
         try 
         {
             resultado=e.calcularPrima("400", "Laura", "011", "-");
@@ -81,6 +130,6 @@ public class TestEmpleado
         {
         	fail();
         }
-        assertEquals(P4,resultado);
+        assertEquals(esperado,resultado);
 	}
 }
