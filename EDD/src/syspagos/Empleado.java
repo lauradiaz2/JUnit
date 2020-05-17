@@ -42,7 +42,7 @@ public class Empleado {
         throw new RuntimeException();
     }
 
-//fin
+
     public void establecerNumeroEmpleado(String nEmpleado) throws NumeroEmpleadoException 
     {
         int n;
@@ -58,7 +58,7 @@ public class Empleado {
         //String numeroCeros = String.valueOf(obj.format("%05d", numero));
     }
 
-//fin
+
     public void estableceNombreEmpleado(String nombreEmpleado) throws NombreEmpleadoException 
     {
         if (nombreEmpleado.matches("^[a-zA-Z]{1,10}$")){
@@ -67,7 +67,7 @@ public class Empleado {
         throw new NombreEmpleadoException();
     }
 
-//fin
+
     public void estableceMesesTrabajo(String mesesT) throws MesesTrabajoException {
         int n;
         if (mesesT.matches("^\\d{3}$"))
